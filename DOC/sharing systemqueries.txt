@@ -1,0 +1,362 @@
+﻿use dev_myunisavedb;
+select * from users
+select * from user_auth
+
+
+CREATE TABLE IF NOT EXISTS user_wallets (
+  wallet_id       BIGINT PRIMARY KEY not null,
+  user_id       BIGINT,
+  balance_rs    DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+  updated_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+ 
+);
+
+
+CREATE TABLE IF NOT EXISTS share_requests (
+  request_id         BIGINT PRIMARY KEY AUTO_INCREMENT,
+  owner_id           BIGINT NOT NULL,         -- A (the one who will share)
+  requester_id       BIGINT NOT NULL,         -- U1/U2/U3 (asking to receive)
+  requested_percent  DECIMAL(5,2) NOT NULL,   -- 0..100
+  status             ENUM('pending','accepted','rejected','cancelled') NOT NULL DEFAULT 'pending',
+  created_at         TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  responded_at       TIMESTAMP NULL DEFAULT NULL,
+ 
+  CONSTRAINT chk_req_percent CHECK (requested_percent >= 0 AND requested_percent <= 100)
+);
+
+
+CREATE TABLE IF NOT EXISTS share_allocations (
+  allocation_id    BIGINT PRIMARY KEY AUTO_INCREMENT,
+  owner_id         BIGINT NOT NULL,         -- A
+  recipient_id     BIGINT NOT NULL,         -- U1/U2/U3
+  percent_share    DECIMAL(5,2) NOT NULL,   -- 0..100
+  source_request_id BIGINT NULL,            -- link to accepted request
+  is_active        TINYINT(1) NOT NULL DEFAULT 1,
+  created_at       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+ 
+
+  CONSTRAINT fk_alloc_src     FOREIGN KEY (source_request_id) REFERENCES share_requests(request_id),
+  CONSTRAINT chk_alloc_percent CHECK (percent_share >= 0 AND percent_share <= 100),
+  CONSTRAINT ux_owner_rec UNIQUE (owner_id, recipient_id)  -- one active row per pair (toggle is_active if needed)
+);
+
+
+CREATE TABLE IF NOT EXISTS transfers (
+  transfer_id       BIGINT PRIMARY KEY AUTO_INCREMENT,
+  owner_id          BIGINT NOT NULL,
+  recipient_id      BIGINT NOT NULL,
+  amount_rs         DECIMAL(12,2) NOT NULL,
+  percent_snapshot  DECIMAL(5,2) NOT NULL,  -- the % used at the time of transfer
+  created_at        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  note              VARCHAR(255) NULL,
+
+
+  CONSTRAINT chk_tr_amt  CHECK (amount_rs >= 0)
+);
+
+
+
+DROP FUNCTION IF EXISTS fn_total_percent_for_owner;
+DELIMITER $$
+CREATE FUNCTION fn_total_percent_for_owner(p_owner_id BIGINT)
+RETURNS DECIMAL(6,2)
+DETERMINISTIC
+READS SQL DATA
+BEGIN
+  DECLARE v_total DECIMAL(6,2);
+  SELECT IFNULL(SUM(percent_share), 0.00)
+    INTO v_total
+  FROM share_allocations
+  WHERE owner_id = p_owner_id AND is_active = 1;
+  RETURN v_total;
+END$$
+DELIMITER ;
+
+
+
+DROP PROCEDURE IF EXISTS sp_send_share_request;
+DELIMITER $$
+CREATE PROCEDURE sp_send_share_request(
+  IN p_owner_id BIGINT,
+  IN p_requester_id BIGINT,
+  IN p_requested_percent DECIMAL(5,2)
+)
+BEGIN
+  -- Basic validations
+  IF p_owner_id = p_requester_id THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Owner and requester cannot be the same user';
+  END IF;
+  IF p_requested_percent < 0 OR p_requested_percent > 100 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'requested_percent must be between 0 and 100';
+  END IF;
+
+  -- Ensure both users exist
+  IF (SELECT COUNT(*) FROM users WHERE user_id = p_owner_id) = 0 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Owner does not exist';
+  END IF;
+  IF (SELECT COUNT(*) FROM users WHERE user_id = p_requester_id) = 0 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Requester does not exist';
+  END IF;
+
+  -- If a pending request exists for this (owner, requester), update %; else create
+  IF EXISTS (SELECT 1 FROM share_requests WHERE owner_id = p_owner_id AND requester_id = p_requester_id AND status = 'pending') THEN
+    UPDATE share_requests
+       SET requested_percent = p_requested_percent
+     WHERE owner_id = p_owner_id
+       AND requester_id = p_requester_id
+       AND status = 'pending';
+  ELSE
+    INSERT INTO share_requests(owner_id, requester_id, requested_percent, status)
+    VALUES (p_owner_id, p_requester_id, p_requested_percent, 'pending');
+  END IF;
+END$$
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+DROP PROCEDURE IF EXISTS sp_respond_share_request;
+DELIMITER $$
+CREATE PROCEDURE sp_respond_share_request(
+  IN p_request_id BIGINT,
+  IN p_owner_id BIGINT,
+  IN p_accept BOOLEAN
+)
+BEGIN
+  DECLARE v_owner_id BIGINT;
+  DECLARE v_requester_id BIGINT;
+  DECLARE v_req_percent DECIMAL(5,2);
+  DECLARE v_status VARCHAR(16);
+
+  START TRANSACTION;
+
+  -- Load and lock the request
+  SELECT owner_id, requester_id, requested_percent, status
+    INTO v_owner_id, v_requester_id, v_req_percent, v_status
+  FROM share_requests
+  WHERE request_id = p_request_id
+  FOR UPDATE;
+
+  IF v_owner_id IS NULL THEN
+    ROLLBACK;
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Request not found';
+  END IF;
+
+  IF v_status <> 'pending' THEN
+    ROLLBACK;
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Request is not pending';
+  END IF;
+
+  IF v_owner_id <> p_owner_id THEN
+    ROLLBACK;
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Owner mismatch for this request';
+  END IF;
+
+  IF p_accept THEN
+    -- Compute total if we accept (replace or insert)
+    -- If allocation exists, we will replace its percent with v_req_percent
+    SET @current_total := fn_total_percent_for_owner(p_owner_id);
+
+    IF EXISTS (SELECT 1 FROM share_allocations WHERE owner_id = p_owner_id AND recipient_id = v_requester_id AND is_active = 1) THEN
+      -- get current percent of this recipient to adjust the total
+      SELECT percent_share INTO @old_pct
+      FROM share_allocations
+      WHERE owner_id = p_owner_id AND recipient_id = v_requester_id AND is_active = 1
+      FOR UPDATE;
+
+      SET @new_total := @current_total - IFNULL(@old_pct,0) + v_req_percent;
+    ELSE
+      SET @new_total := @current_total + v_req_percent;
+    END IF;
+
+    IF @new_total > 100.00 THEN
+      ROLLBACK;
+      SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Accepting this request would exceed 100% total allocation';
+    END IF;
+
+    -- Upsert allocation
+    INSERT INTO share_allocations(owner_id, recipient_id, percent_share, source_request_id, is_active)
+    VALUES (p_owner_id, v_requester_id, v_req_percent, p_request_id, 1)
+    ON DUPLICATE KEY UPDATE
+      percent_share = VALUES(percent_share),
+      source_request_id = VALUES(source_request_id),
+      is_active = 1;
+
+    -- Mark request accepted
+    UPDATE share_requests
+       SET status = 'accepted', responded_at = NOW()
+     WHERE request_id = p_request_id;
+  ELSE
+    -- Reject
+    UPDATE share_requests
+       SET status = 'rejected', responded_at = NOW()
+     WHERE request_id = p_request_id;
+  END IF;
+
+  COMMIT;
+END$$
+DELIMITER ;
+
+
+
+
+DROP PROCEDURE IF EXISTS sp_share_owner_amount;
+DELIMITER $$
+CREATE PROCEDURE sp_share_owner_amount(
+  IN p_owner_id BIGINT,
+  IN p_amount_rs DECIMAL(12,2),
+  IN p_note VARCHAR(255)
+)
+BEGIN
+  -- 1) DECLAREs must be at the top of the block
+  DECLARE v_balance DECIMAL(12,2);
+  DECLARE v_total_pct DECIMAL(6,2);
+
+  DECLARE cur_recipient_id BIGINT;
+  DECLARE cur_pct DECIMAL(5,2);
+  DECLARE cur_amt DECIMAL(12,2);
+  DECLARE done INT DEFAULT 0;
+  DECLARE v_distributed DECIMAL(12,2) DEFAULT 0.00;
+
+  -- Cursor and handler declarations also belong up-front
+  DECLARE c CURSOR FOR
+    SELECT recipient_id, percent_share
+    FROM share_allocations
+    WHERE owner_id = p_owner_id AND is_active = 1
+    ORDER BY percent_share DESC, recipient_id ASC;
+
+  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+  -- 2) Now the executable logic
+  IF p_amount_rs <= 0 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Amount must be > 0';
+  END IF;
+
+  START TRANSACTION;
+
+  -- Lock the owner's wallet
+  SELECT balance_rs INTO v_balance
+  FROM wallets
+  WHERE user_id = p_owner_id
+  FOR UPDATE;
+
+  IF v_balance IS NULL THEN
+    ROLLBACK;
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Owner wallet not found';
+  END IF;
+
+  IF v_balance < p_amount_rs THEN
+    ROLLBACK;
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Insufficient owner balance';
+  END IF;
+
+  -- Load allocations
+  SET v_total_pct = fn_total_percent_for_owner(p_owner_id);
+  IF v_total_pct <= 0 THEN
+    ROLLBACK;
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No active allocations to share';
+  END IF;
+
+  -- Deduct from owner up front
+  UPDATE wallets
+     SET balance_rs = balance_rs - p_amount_rs
+   WHERE user_id = p_owner_id;
+
+  -- Distribute by cursor
+  OPEN c;
+  read_loop: LOOP
+    FETCH c INTO cur_recipient_id, cur_pct;
+    IF done = 1 THEN
+      LEAVE read_loop;
+    END IF;
+
+    SET cur_amt = ROUND(p_amount_rs * (cur_pct / 100.0), 2);
+    SET v_distributed = v_distributed + cur_amt;
+
+    -- credit recipient wallet (create if missing)
+    INSERT INTO wallets (user_id, balance_rs)
+    VALUES (cur_recipient_id, cur_amt)
+    ON DUPLICATE KEY UPDATE balance_rs = balance_rs + VALUES(balance_rs);
+
+    -- ledger
+    INSERT INTO transfers(owner_id, recipient_id, amount_rs, percent_snapshot, note)
+    VALUES (p_owner_id, cur_recipient_id, cur_amt, cur_pct, p_note);
+  END LOOP read_loop;
+  CLOSE c;
+
+  -- Handle rounding residue: give back to owner (keeps accounting exact)
+  IF v_distributed <> p_amount_rs THEN
+    UPDATE wallets
+       SET balance_rs = balance_rs + (p_amount_rs - v_distributed)
+     WHERE user_id = p_owner_id;
+  END IF;
+
+  COMMIT;
+END$$
+DELIMITER ;
+
+
+
+-- testing data
+
+-- U1 asks A (owner 20) for 10%
+CALL sp_send_share_request(20, 101, 10.00);
+-- U2 asks for 20%
+CALL sp_send_share_request(20, 102, 20.00);
+-- U3 asks for 20%
+CALL sp_send_share_request(20, 103, 20.00);
+
+-- A reviews and accepts each (replace req IDs accordingly)
+CALL sp_respond_share_request(1, 20, TRUE);
+CALL sp_respond_share_request(2, 20, TRUE);
+CALL sp_respond_share_request(3, 20, TRUE);
+
+-- Check total allocation (should be 50.00)
+SELECT fn_total_percent_for_owner(20) AS total_alloc;
+
+-- A shares ₹200 now
+CALL sp_share_owner_amount(20, 200.00, 'Monthly share');
+
+-- See results
+SELECT * FROM wallets WHERE user_id IN (20,101,102,103);
+SELECT * FROM transfers WHERE owner_id = 20 ORDER BY created_at DESC;
+
+In your share_allocations table:
+
+source_request_id BIGINT NULL,
+
+
+This column is meant to store the reference to the request_id from share_requests table.
+
+It links each accepted allocation back to the request that created it.
+
+Why NULL?
+
+Not every allocation must come from a request (for example, you might insert allocations manually for testing, or initialize them directly).
+
+Declaring it NULL means:
+
+If the allocation was created manually (without a request), you can leave source_request_id empty.
+
+If it was created from a request, it will contain the corresponding request_id.
+
+So:
+
+NOT NULL → would force you to always tie an allocation to a request (no flexibility).
+
+NULL → allows both request-driven and manual allocations.
+
+👉 In your workflow, since you’re building allocations from accepted requests, source_request_id will normally contain that request_id. But keeping it nullable makes your schema more flexible.
+
+Do you want me to adjust the design to make source_request_id mandatory (NOT NULL) since in your case allocations always come from requests?
+
+
+
+
