@@ -1,8 +1,8 @@
-using System.Reflection.PortableExecutable;
 using DataProviderServiceShared.BrandMaster;
 using DataProviderServiceShared.BusinessMaster;
 using DataProviderServiceShared.CategoryMaster;
 using DataProviderServiceShared.HomeBannerAdd;
+using DataProviderServiceShared.ShareAllocationMaster;
 using DataProviderServiceShared.StoreFinder;
 using DataProviderServiceShared.UserAuthentication;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 using MySqlDlayerShared;
 using myunisaveapi.Middleware;
+using System.Reflection.PortableExecutable;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +24,7 @@ builder.Services.AddScoped<BusinessMasterDataFactory>();
 builder.Services.AddScoped<CategoryMasterDataFactory>();
 builder.Services.AddScoped<HomeBannerDataFactory>();
 builder.Services.AddScoped<BrandMasterDataFactory>();
-
+builder.Services.AddScoped<ParticiepentsDataFactory>();
 
 
 builder.Services.AddEndpointsApiExplorer();

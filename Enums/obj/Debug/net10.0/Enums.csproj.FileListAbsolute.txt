@@ -1,0 +1,12 @@
+H:\Git_Projects\unisave_webapi_V2\Enums\bin\Debug\net10.0\Enums.deps.json
+H:\Git_Projects\unisave_webapi_V2\Enums\bin\Debug\net10.0\Enums.dll
+H:\Git_Projects\unisave_webapi_V2\Enums\bin\Debug\net10.0\Enums.pdb
+H:\Git_Projects\unisave_webapi_V2\Enums\obj\Debug\net10.0\Enums.GeneratedMSBuildEditorConfig.editorconfig
+H:\Git_Projects\unisave_webapi_V2\Enums\obj\Debug\net10.0\Enums.AssemblyInfoInputs.cache
+H:\Git_Projects\unisave_webapi_V2\Enums\obj\Debug\net10.0\Enums.AssemblyInfo.cs
+H:\Git_Projects\unisave_webapi_V2\Enums\obj\Debug\net10.0\Enums.csproj.CoreCompileInputs.cache
+H:\Git_Projects\unisave_webapi_V2\Enums\obj\Debug\net10.0\Enums.sourcelink.json
+H:\Git_Projects\unisave_webapi_V2\Enums\obj\Debug\net10.0\Enums.dll
+H:\Git_Projects\unisave_webapi_V2\Enums\obj\Debug\net10.0\refint\Enums.dll
+H:\Git_Projects\unisave_webapi_V2\Enums\obj\Debug\net10.0\Enums.pdb
+H:\Git_Projects\unisave_webapi_V2\Enums\obj\Debug\net10.0\ref\Enums.dll

@@ -1,0 +1,12 @@
+H:\Git_Projects\unisave_webapi_V2\InputModels\bin\Debug\net10.0\InputModels.deps.json
+H:\Git_Projects\unisave_webapi_V2\InputModels\bin\Debug\net10.0\InputModels.dll
+H:\Git_Projects\unisave_webapi_V2\InputModels\bin\Debug\net10.0\InputModels.pdb
+H:\Git_Projects\unisave_webapi_V2\InputModels\obj\Debug\net10.0\InputModels.GeneratedMSBuildEditorConfig.editorconfig
+H:\Git_Projects\unisave_webapi_V2\InputModels\obj\Debug\net10.0\InputModels.AssemblyInfoInputs.cache
+H:\Git_Projects\unisave_webapi_V2\InputModels\obj\Debug\net10.0\InputModels.AssemblyInfo.cs
+H:\Git_Projects\unisave_webapi_V2\InputModels\obj\Debug\net10.0\InputModels.csproj.CoreCompileInputs.cache
+H:\Git_Projects\unisave_webapi_V2\InputModels\obj\Debug\net10.0\InputModels.sourcelink.json
+H:\Git_Projects\unisave_webapi_V2\InputModels\obj\Debug\net10.0\InputModels.dll
+H:\Git_Projects\unisave_webapi_V2\InputModels\obj\Debug\net10.0\refint\InputModels.dll
+H:\Git_Projects\unisave_webapi_V2\InputModels\obj\Debug\net10.0\InputModels.pdb
+H:\Git_Projects\unisave_webapi_V2\InputModels\obj\Debug\net10.0\ref\InputModels.dll

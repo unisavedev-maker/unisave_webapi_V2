@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>H:\myunisavewebapirelease</_PublishTargetUrl>
+    <History>True|2025-12-13T10:41:41.6067649Z||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="MySqlConnection">
+      <Value>server=191.101.0.168%3bport=3306%3bdatabase=dev_myunisavedb%3busername=devom%3bpassword=admin%40123%3b convert zero datetime=True</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
