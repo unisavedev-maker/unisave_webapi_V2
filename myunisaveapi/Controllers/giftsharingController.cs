@@ -33,19 +33,22 @@ namespace myunisaveapi.Controllers
 
                 
                 string[] pnames = {
-            "p_action", "p_p_id", "p_u_id", "p_relation_id", "p_name",
+            "p_action", "p_p_id","p_request_id", "p_u_id","ownerid", "p_relation_id", "p_name",
             "p_dob", "p_allocation", "p_image_name"
         };
 
             string[] pvalues = {
             Db_Action.CREATE.ToString(),
             model.p_p_id?.ToString() ?? "0",
+             model.request_id.ToString(),
             model.p_u_id.ToString(),
+           
+             model.ownerid.ToString(),
             model.p_relation_id?.ToString() ?? "0",
             model.p_name ?? "",
             model.p_dob?.ToString("yyyy-MM-dd") ?? "",
             model.p_allocation.ToString(),
-            model.p_image_name ?? ""
+            model.p_image_name ?? "no-image.png"
            
         };
 
@@ -57,7 +60,123 @@ namespace myunisaveapi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-       /* [HttpPost("share-requests")]
+
+        [HttpPost("all-participent")]
+        public IActionResult allparticipent([FromBody] ParticipentInputModel model)
+        {
+            try
+            {
+                if (model == null) return BadRequest("Invalid participant data.");
+
+
+                string[] pnames = {
+            "p_action", "p_p_id","p_request_id", "p_u_id","ownerid", "p_relation_id", "p_name",
+            "p_dob", "p_allocation", "p_image_name"
+        };
+
+                string[] pvalues = {
+            Db_Action.SELECT_ALL.ToString(),
+            model.p_p_id?.ToString() ?? "0",
+             model.request_id.ToString(),
+            model.p_u_id.ToString(),
+           
+            model.ownerid.ToString(),
+            model.p_relation_id?.ToString() ?? "0",
+            model.p_name ?? "",
+            model.p_dob?.ToString("yyyy-MM-dd") ?? "",
+            model.p_allocation.ToString(),
+            model.p_image_name ?? ""
+
+        };
+
+                var result = _ParticiepentsDataFactory.AddParticiepents(pnames, pvalues);
+                return Ok(result);
+            }
+            
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpPost("update-participent")]
+        public IActionResult updateparticipent([FromBody] ParticipentInputModel model)
+        {
+            try
+            {
+                if (model == null) return BadRequest("Invalid participant data.");
+
+
+                string[] pnames = {
+            "p_action", "p_p_id","p_request_id", "p_u_id","ownerid", "p_relation_id", "p_name",
+            "p_dob", "p_allocation", "p_image_name"
+        };
+
+                string[] pvalues = {
+            Db_Action.UPDATE.ToString(),
+            model.p_p_id?.ToString() ?? "0",
+            model.request_id.ToString(),
+            model.p_u_id.ToString(),
+            
+            model.ownerid.ToString(),
+            model.p_relation_id?.ToString() ?? "0",
+            model.p_name ?? "",
+            model.p_dob?.ToString("yyyy-MM-dd") ?? "",
+            model.p_allocation.ToString(),
+            model.p_image_name ?? ""
+
+        };
+
+                var result = _ParticiepentsDataFactory.AddParticiepents(pnames, pvalues);
+                return Ok(result);
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpPost("getbyid-participent")]
+        public IActionResult getbyidarticipent([FromBody] ParticipentInputModel model)
+        {
+            try
+            {
+                if (model == null) return BadRequest("Invalid participant data.");
+
+
+                string[] pnames = {
+            "p_action", "p_p_id","p_request_id", "p_u_id","ownerid", "p_relation_id", "p_name",
+            "p_dob", "p_allocation", "p_image_name"
+        };
+
+                string[] pvalues = {
+            Db_Action.SELECT_BY_ID.ToString(),
+            model.p_p_id?.ToString() ?? "0",
+             model.request_id.ToString(),
+            model.p_u_id.ToString(),
+           
+            model.ownerid.ToString(),
+            model.p_relation_id?.ToString() ?? "0",
+            model.p_name ?? "",
+            model.p_dob?.ToString("yyyy-MM-dd") ?? "",
+            model.p_allocation.ToString(),
+            model.p_image_name ?? ""
+
+        };
+
+                var result = _ParticiepentsDataFactory.AddParticiepents(pnames, pvalues);
+                return Ok(result);
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        /* [HttpPost("share-requests")]
         public IActionResult SendShareRequest(long p_owner_id, long p_requester_id, decimal p_requested_percent)
         {
             try

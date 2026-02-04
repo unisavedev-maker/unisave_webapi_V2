@@ -1,12 +1,15 @@
 ﻿using DataProviderServiceShared.BrandMaster;
 using DataProviderServiceShared.BusinessMaster;
 using DataProviderServiceShared.CategoryMaster;
+using DataProviderServiceShared.RelationManagement;
 using DataProviderServiceShared.StoreFinder;
 using DTOModelsShared.DTOBusinessMaster;
 using DTOModelsShared.DTOCategoryMaster;
+using DTOModelsShared.DTORelationshipManagement;
 using DTOModelsShared.DTOUserRegistration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 namespace myunisaveapi.Controllers
 {
@@ -17,12 +20,13 @@ namespace myunisaveapi.Controllers
         private readonly BusinessMasterDataFactory _BusinessMasterDataFactory;
         private readonly CategoryMasterDataFactory _CategoryMasterDataFactory;
         private readonly BrandMasterDataFactory _BrandMasterDataFactory;
-
-        public commonitemController(BusinessMasterDataFactory businessMasterDataFactory, CategoryMasterDataFactory categoryMasterDataFactory, BrandMasterDataFactory brandMasterDataFactory)
+        private readonly RelationshipDataFactory _RelationshipDataFactory;
+        public commonitemController(BusinessMasterDataFactory businessMasterDataFactory, CategoryMasterDataFactory categoryMasterDataFactory, BrandMasterDataFactory brandMasterDataFactory, RelationshipDataFactory relationshipDataFactory)
         {
             _BusinessMasterDataFactory = businessMasterDataFactory;
             _CategoryMasterDataFactory = categoryMasterDataFactory;
             _BrandMasterDataFactory = brandMasterDataFactory;
+            _RelationshipDataFactory = relationshipDataFactory;
         }
 
         [HttpGet("businessbyid")]
@@ -33,6 +37,24 @@ namespace myunisaveapi.Controllers
                 string[] pname = { "p_business_id" };
                 string[] pvalue = { p_business_id };
                 return Ok(_BusinessMasterDataFactory.GetBusinessDetailsById(pname, pvalue));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.ToString());
+            }
+
+
+        }
+
+        [HttpGet("getrelationship")]
+        public ActionResult<List<DTORelation>> get_relationship(string action, string P_r_id, string r_name)
+        {
+            try
+            {
+                string[] pname = { "action", "P_r_id", "r_name" };
+                string[] pvalue = { action, P_r_id, r_name };
+                return Ok(_RelationshipDataFactory.relationship_management(pname, pvalue));
             }
             catch (Exception ex)
             {

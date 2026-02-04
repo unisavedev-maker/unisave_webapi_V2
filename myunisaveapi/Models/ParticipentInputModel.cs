@@ -6,6 +6,8 @@
 
         public long? p_p_id { get; set; }
         public long p_u_id { get; set; }
+        public long request_id { get; set; }
+        public long ownerid { get; set; }
         public int? p_relation_id { get; set; }
         
         public string p_name { get; set; }

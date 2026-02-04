@@ -2,6 +2,7 @@ using DataProviderServiceShared.BrandMaster;
 using DataProviderServiceShared.BusinessMaster;
 using DataProviderServiceShared.CategoryMaster;
 using DataProviderServiceShared.HomeBannerAdd;
+using DataProviderServiceShared.RelationManagement;
 using DataProviderServiceShared.ShareAllocationMaster;
 using DataProviderServiceShared.StoreFinder;
 using DataProviderServiceShared.UserAuthentication;
@@ -25,7 +26,7 @@ builder.Services.AddScoped<CategoryMasterDataFactory>();
 builder.Services.AddScoped<HomeBannerDataFactory>();
 builder.Services.AddScoped<BrandMasterDataFactory>();
 builder.Services.AddScoped<ParticiepentsDataFactory>();
-
+builder.Services.AddScoped<RelationshipDataFactory>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -53,11 +54,15 @@ app.UseMiddleware<ExceptionMiddleware>();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {   
-    //app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Home/Error");
    
 }
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
 
+}
 
 
 if (!app.Environment.IsDevelopment())
