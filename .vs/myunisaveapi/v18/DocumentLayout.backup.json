@@ -46,8 +46,7 @@
               "RelativeToolTip": "myunisaveapi\\Program.cs",
               "ViewState": "AgIAACIAAAAAAAAAAAAiwB8AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-05T14:56:46.21Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-05T14:56:46.21Z"
             },
             {
               "$type": "Document",
@@ -59,8 +58,7 @@
               "RelativeToolTip": "myunisaveapi\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-02-05T14:56:45.025Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-05T14:56:45.025Z"
             },
             {
               "$type": "Document",
@@ -72,8 +70,7 @@
               "RelativeToolTip": "DTOModelsShared\\DTOParticiepents\\DTOParticiepentsMaster.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-05T14:49:33.849Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-05T14:49:33.849Z"
             },
             {
               "$type": "Document",
@@ -85,8 +82,7 @@
               "RelativeToolTip": "myunisaveapi\\Enums\\Db_Action.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-05T11:10:05.913Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-05T11:10:05.913Z"
             },
             {
               "$type": "Document",
@@ -96,7 +92,7 @@
               "RelativeDocumentMoniker": "myunisaveapi\\Controllers\\giftsharingController.cs",
               "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\giftsharingController.cs",
               "RelativeToolTip": "myunisaveapi\\Controllers\\giftsharingController.cs",
-              "ViewState": "AgIAAEYBAAAAAAAAAAAswFYBAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAEcBAAAAAAAAAAAuwFYBAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-05T11:06:10.968Z",
               "EditorCaption": ""
@@ -111,8 +107,7 @@
               "RelativeToolTip": "myunisaveapi\\Models\\ParticipentInputModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-04T11:35:05.597Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-04T11:35:05.597Z"
             }
           ]
         }
