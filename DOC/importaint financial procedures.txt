@@ -1,0 +1,558 @@
+SELECT * FROM dev_myunisavedb.tbl_particiepents_master;
+select * from share_requests order by request_id desc
+
+select * from financial_ledger;
+ALTER TABLE financial_ledger
+ADD COLUMN reference_ledger_id BIGINT NULL;
+
+
+owner_earnings
+DELIMITER $$
+
+CREATE PROCEDURE sp_distribute_owner_earning (
+    IN p_owner_id BIGINT,
+    IN p_earning_id BIGINT,
+    IN p_base_amount DECIMAL(15,2),
+    IN p_earning_date DATE
+)
+BEGIN
+    DECLARE v_done INT DEFAULT 0;
+
+    DECLARE v_request_id BIGINT;
+    DECLARE v_requester_id BIGINT;
+    DECLARE v_participant_id BIGINT;
+    DECLARE v_percent DECIMAL(5,2);
+    DECLARE v_amount DECIMAL(15,2);
+
+    -- Cursor to fetch active accepted share requests
+    DECLARE cur_shares CURSOR FOR
+        SELECT
+            sr.request_id,
+            sr.requester_id,
+            sr.participent_id,
+            sr.requested_percent
+        FROM share_requests sr
+        WHERE sr.owner_id = p_owner_id
+          AND sr.status = 2
+          AND sr.isActive = 1
+          AND sr.isDeleted = 0;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_done = 1;
+
+    OPEN cur_shares;
+
+    read_loop: LOOP
+        FETCH cur_shares
+        INTO v_request_id, v_requester_id, v_participant_id, v_percent;
+
+        IF v_done = 1 THEN
+            LEAVE read_loop;
+        END IF;
+
+        -- % wise calculation
+        SET v_amount = ROUND((p_base_amount * v_percent) / 100, 2);
+
+        -- Insert immutable ledger entry
+        INSERT INTO financial_ledger (
+            request_id,
+            owner_id,
+            requester_id,
+            participent_id,
+            earning_id,
+
+            applied_percent,
+            base_amount,
+            amount,
+
+            earning_date,
+            earning_month,
+
+            entry_type,
+            description
+        )
+        VALUES (
+            v_request_id,
+            p_owner_id,
+            v_requester_id,
+            v_participant_id,
+            p_earning_id,
+
+            v_percent,
+            p_base_amount,
+            v_amount,
+
+            p_earning_date,
+            DATE_FORMAT(p_earning_date, '%Y-%m'),
+
+            'CREDIT',
+            CONCAT(
+                'Share earning ',
+                v_percent,
+                '% from owner ',
+                p_owner_id
+            )
+        );
+
+    END LOOP;
+
+    CLOSE cur_shares;
+
+END$$
+
+DELIMITER ;
+
+
+
+CALL sp_distribute_owner_earning(
+    20,             -- owner_id
+    1002,           -- earning_id
+    500.00,      -- owner earning
+    '2026-02-05'    -- earning date
+);
+
+
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_reverse_ledger_entry (
+    IN p_ledger_id BIGINT,
+    IN p_reason VARCHAR(255)
+)
+BEGIN
+    DECLARE v_request_id BIGINT;
+    DECLARE v_owner_id BIGINT;
+    DECLARE v_requester_id BIGINT;
+    DECLARE v_participant_id BIGINT;
+    DECLARE v_earning_id BIGINT;
+
+    DECLARE v_percent DECIMAL(5,2);
+    DECLARE v_base_amount DECIMAL(15,2);
+    DECLARE v_amount DECIMAL(15,2);
+
+    DECLARE v_earning_date DATE;
+    DECLARE v_earning_month CHAR(7);
+
+    -- Fetch original ledger entry
+    SELECT
+        request_id,
+        owner_id,
+        requester_id,
+        participent_id,
+        earning_id,
+        applied_percent,
+        base_amount,
+        amount,
+        earning_date,
+        earning_month
+    INTO
+        v_request_id,
+        v_owner_id,
+        v_requester_id,
+        v_participant_id,
+        v_earning_id,
+        v_percent,
+        v_base_amount,
+        v_amount,
+        v_earning_date,
+        v_earning_month
+    FROM financial_ledger
+    WHERE ledger_id = p_ledger_id
+      AND entry_type = 'CREDIT';
+
+    -- Insert reversal DEBIT
+    INSERT INTO financial_ledger (
+        request_id,
+        owner_id,
+        requester_id,
+        participent_id,
+        earning_id,
+
+        applied_percent,
+        base_amount,
+        amount,
+
+        earning_date,
+        earning_month,
+
+        entry_type,
+        reference_ledger_id,
+        description
+    )
+    VALUES (
+        v_request_id,
+        v_owner_id,
+        v_requester_id,
+        v_participant_id,
+        v_earning_id,
+
+        v_percent,
+        v_base_amount,
+        v_amount,
+
+        v_earning_date,
+        v_earning_month,
+
+        'DEBIT',
+        p_ledger_id,
+        CONCAT('Reversal: ', p_reason)
+    );
+
+END$$
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_participant_withdrawal (
+    IN p_participant_id BIGINT,
+    IN p_amount DECIMAL(15,2),
+    IN p_description VARCHAR(255)
+)
+BEGIN
+    -- Safety: balance check
+    IF (
+        SELECT IFNULL(
+            SUM(
+                CASE
+                    WHEN entry_type = 'CREDIT' THEN amount
+                    ELSE -amount
+                END
+            ), 0
+        )
+        FROM financial_ledger
+        WHERE participent_id = p_participant_id
+    ) < p_amount THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Insufficient balance for withdrawal';
+    END IF;
+
+    INSERT INTO financial_ledger (
+        participent_id,
+        entry_type,
+        amount,
+        description,
+        earning_date,
+        earning_month
+    )
+    VALUES (
+        p_participant_id,
+        'DEBIT',
+        p_amount,
+        p_description,
+        CURDATE(),
+        DATE_FORMAT(CURDATE(), '%Y-%m')
+    );
+
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_participant_balance_by_date (
+    IN p_participent_id BIGINT,
+    IN p_date_from DATE,
+    IN p_date_to DATE
+)
+BEGIN
+    SELECT
+        participent_id,
+        SUM(
+            CASE
+                WHEN entry_type = 'CREDIT' THEN amount
+                ELSE -amount
+            END
+        ) AS current_balance
+    FROM financial_ledger
+    WHERE participent_id = p_participent_id
+      AND earning_date BETWEEN p_date_from AND p_date_to;
+END$$
+
+DELIMITER ;
+
+
+CREATE TABLE owner_wallet_ledger (
+    ledger_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    owner_id BIGINT NOT NULL,
+
+    earning_id BIGINT NULL,          -- source earning
+    request_id BIGINT NULL,          -- share request (optional)
+
+    entry_type ENUM('CREDIT','DEBIT') NOT NULL,
+
+    amount DECIMAL(15,2) NOT NULL,
+
+    -- 🔒 SNAPSHOT / CONTEXT
+    description VARCHAR(255),
+
+    transaction_date DATE NOT NULL,
+    transaction_month CHAR(7) NOT NULL,  -- YYYY-MM
+
+    reference_ledger_id BIGINT NULL,     -- reversal link
+
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    INDEX idx_owner_date (owner_id, transaction_date)
+);
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_owner_wallet_credit (
+    IN p_owner_id BIGINT,
+    IN p_earning_id BIGINT,
+    IN p_amount DECIMAL(15,2),
+    IN p_description VARCHAR(255),
+    IN p_transaction_date DATE
+)
+BEGIN
+    INSERT INTO owner_wallet_ledger (
+        owner_id,
+        earning_id,
+        entry_type,
+        amount,
+        description,
+        transaction_date,
+        transaction_month
+    )
+    VALUES (
+        p_owner_id,
+        p_earning_id,
+        'CREDIT',
+        p_amount,
+        p_description,
+        p_transaction_date,
+        DATE_FORMAT(p_transaction_date, '%Y-%m')
+    );
+END$$
+
+DELIMITER ;
+
+
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_owner_wallet_share_debit (
+    IN p_owner_id BIGINT,
+    IN p_request_id BIGINT,
+    IN p_earning_id BIGINT,
+    IN p_amount DECIMAL(15,2),
+    IN p_description VARCHAR(255),
+    IN p_transaction_date DATE
+)
+BEGIN
+    INSERT INTO owner_wallet_ledger (
+        owner_id,
+        request_id,
+        earning_id,
+        entry_type,
+        amount,
+        description,
+        transaction_date,
+        transaction_month
+    )
+    VALUES (
+        p_owner_id,
+        p_request_id,
+        p_earning_id,
+        'DEBIT',
+        p_amount,
+        p_description,
+        p_transaction_date,
+        DATE_FORMAT(p_transaction_date, '%Y-%m')
+    );
+END$$
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_owner_earning_full_distribution (
+    IN p_owner_id BIGINT,
+    IN p_earning_id BIGINT,
+    IN p_base_amount DECIMAL(15,2),
+    IN p_earning_date DATE
+)
+BEGIN
+    DECLARE v_total_share DECIMAL(5,2);
+
+    START TRANSACTION;
+
+    -- Owner credit
+    CALL sp_owner_wallet_credit(
+        p_owner_id,
+        p_earning_id,
+        p_base_amount,
+        'Owner earning credit',
+        p_earning_date
+    );
+
+    -- Safety: total % check
+    SELECT IFNULL(SUM(requested_percent),0)
+    INTO v_total_share
+    FROM share_requests
+    WHERE owner_id = p_owner_id
+      AND status = 2
+      AND isActive = 1
+      AND isDeleted = 0;
+
+    IF v_total_share > 100 THEN
+        ROLLBACK;
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Share percent exceeds 100%';
+    END IF;
+
+    -- Participant distribution
+    CALL sp_distribute_owner_earning(
+        p_owner_id,
+        p_earning_id,
+        p_base_amount,
+        p_earning_date
+    );
+
+    COMMIT;
+
+END$$
+
+DELIMITER ;
+
+
+SELECT
+    owner_id,
+    SUM(
+        CASE
+            WHEN entry_type = 'CREDIT' THEN amount
+            ELSE -amount
+        END
+    ) AS owner_balance
+FROM owner_wallet_ledger
+WHERE owner_id = 20;
+
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_user_earning_summary_datewise (
+    IN p_user_id BIGINT,
+    IN p_from_date DATE,
+    IN p_to_date DATE
+)
+BEGIN
+    SELECT
+        fl.earning_date,
+
+        
+        SUM(
+            CASE
+                WHEN fl.entry_type = 'CREDIT'
+                THEN fl.amount
+                ELSE 0
+            END
+        ) AS total_earning,
+
+       
+        SUM(
+            CASE
+                WHEN fl.entry_type = 'CREDIT'
+                 AND fl.owner_id = fl.requester_id
+                THEN fl.amount
+                ELSE 0
+            END
+        ) AS internal_earning,
+
+        
+        SUM(
+            CASE
+                WHEN fl.entry_type = 'CREDIT'
+                 AND fl.owner_id <> fl.requester_id
+                THEN fl.amount
+                ELSE 0
+            END
+        ) AS external_earning
+
+    FROM financial_ledger fl
+    WHERE fl.requester_id = p_user_id
+      AND fl.earning_date BETWEEN p_from_date AND p_to_date
+
+    GROUP BY fl.earning_date
+    ORDER BY fl.earning_date;
+END $$
+
+DELIMITER ;
+
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE sp_user_earning_summary_range (
+    IN p_user_id BIGINT,
+    IN p_from_date DATE,
+    IN p_to_date DATE
+)
+BEGIN
+    SELECT
+        p_user_id AS user_id,
+
+       
+        SUM(
+            CASE
+                WHEN entry_type = 'CREDIT'
+                THEN amount
+                ELSE 0
+            END
+        ) AS total_earning,
+
+       
+        SUM(
+            CASE
+                WHEN entry_type = 'CREDIT'
+                 AND owner_id = requester_id
+                THEN amount
+                ELSE 0
+            END
+        ) AS internal_earning,
+
+      
+        SUM(
+            CASE
+                WHEN entry_type = 'CREDIT'
+                 AND owner_id <> requester_id
+                THEN amount
+                ELSE 0
+            END
+        ) AS external_earning
+
+    FROM financial_ledger
+    WHERE requester_id = p_user_id
+      AND earning_date BETWEEN p_from_date AND p_to_date;
+END $$
+
+DELIMITER ;
+
+
+
+
+CALL sp_user_earning_summary_range(
+    20,
+    now(),
+    now()
+);
+
+
+
+
+
+
+
+
+

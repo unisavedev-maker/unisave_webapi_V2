@@ -15,6 +15,7 @@
         public decimal p_allocation { get; set; }
         public string p_image_name { get; set; }
         public string p_status { get; set; }
+        public string p_email{ get; set; }
         public bool p_isActive { get; set; } = true;
         public bool p_isDisabled { get; set; } = false;
     }

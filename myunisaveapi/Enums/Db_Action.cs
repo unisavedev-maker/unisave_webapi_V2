@@ -7,8 +7,13 @@
             UPDATE,
             DELETE,
             SELECT_BY_ID,
-            SELECT_ALL
-        
+            SELECT_ALL,
+            EXTERNAL_SHARE,
+            ACCEPT_EXTERNAL_SHARE,
+            REJECT_EXTERNAL_SHARE,
+            DELETE_SHARE,
+            DELETE_PARTICIEPENT
+
     }
 }
 
