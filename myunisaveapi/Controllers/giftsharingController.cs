@@ -37,19 +37,20 @@ namespace myunisaveapi.Controllers
             "p_dob", "p_allocation", "p_image_name","p_email"
         };
 
-            string[] pvalues = {
+                string[] pvalues = {
             Db_Action.CREATE.ToString(),
             model.p_p_id?.ToString() ?? "0",
              model.request_id.ToString(),
             model.p_u_id.ToString(),
-           
+
              model.ownerid.ToString(),
             model.p_relation_id?.ToString() ?? "0",
             model.p_name ?? "",
             model.p_dob?.ToString("yyyy-MM-dd") ?? "",
             model.p_allocation.ToString(),
-            model.p_image_name ?? "no-image.png"
-           
+            model.p_image_name ?? "no-image.png",
+            model.p_email ?? ""
+
         };
 
                 var result = _ParticiepentsDataFactory.AddParticiepents(pnames, pvalues);
@@ -86,7 +87,7 @@ namespace myunisaveapi.Controllers
             model.p_dob?.ToString("yyyy-MM-dd") ?? "",
             model.p_allocation.ToString(),
             model.p_image_name ?? "",
-            model.p_email??"",
+            model.p_email??""
 
         };
 
@@ -126,7 +127,7 @@ namespace myunisaveapi.Controllers
             model.p_dob?.ToString("yyyy-MM-dd") ?? "",
             model.p_allocation.ToString(),
             model.p_image_name ?? "",
-            model.p_email??"",
+            model.p_email??""
 
         };
 
