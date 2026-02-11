@@ -4,7 +4,7 @@
     {
         //public Enums.Db_Action p_action { get; set; }
 
-        public long? p_p_id { get; set; }
+        public string p_p_id { get; set; }
         public long p_u_id { get; set; }
         public long request_id { get; set; }
         public long ownerid { get; set; }

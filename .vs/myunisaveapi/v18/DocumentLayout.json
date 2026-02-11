@@ -3,28 +3,72 @@
   "WorkspaceRootPath": "H:\\Git_Projects\\unisave_webapi_V2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\controllers\\giftsharingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\controllers\\giftsharingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{14ACB5C7-248D-4067-87A2-18EEB6C24479}|DTOModelsShared\\DTOModelsShared.csproj|h:\\git_projects\\unisave_webapi_v2\\dtomodelsshared\\dtouserregistration\\sharinginfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14ACB5C7-248D-4067-87A2-18EEB6C24479}|DTOModelsShared\\DTOModelsShared.csproj|solutionrelative:dtomodelsshared\\dtouserregistration\\sharinginfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\enums\\db_action.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\enums\\db_action.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{84982B83-D6DE-4B0E-A7C6-A8139278121B}|DataProviderServiceShared\\DataProviderServiceShared.csproj|h:\\git_projects\\unisave_webapi_v2\\dataproviderserviceshared\\sharinginfodetail\\sharinginfodatafactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{84982B83-D6DE-4B0E-A7C6-A8139278121B}|DataProviderServiceShared\\DataProviderServiceShared.csproj|solutionrelative:dataproviderserviceshared\\sharinginfodetail\\sharinginfodatafactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\controllers\\sharinginfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\controllers\\sharinginfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\models\\sharinginfoinputmodel\\inputgetsharingdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\models\\sharinginfoinputmodel\\inputgetsharingdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\controllers\\commonitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\controllers\\commonitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\models\\postdatamodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\models\\postdatamodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\models\\inputprofilemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\models\\inputprofilemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\controllers\\giftsharingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\controllers\\giftsharingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\controllers\\usermanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\controllers\\usermanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{14ACB5C7-248D-4067-87A2-18EEB6C24479}|DTOModelsShared\\DTOModelsShared.csproj|h:\\git_projects\\unisave_webapi_v2\\dtomodelsshared\\dtoparticiepents\\dtoparticiepentsmaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{14ACB5C7-248D-4067-87A2-18EEB6C24479}|DTOModelsShared\\DTOModelsShared.csproj|solutionrelative:dtomodelsshared\\dtoparticiepents\\dtoparticiepentsmaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{84982B83-D6DE-4B0E-A7C6-A8139278121B}|DataProviderServiceShared\\DataProviderServiceShared.csproj|h:\\git_projects\\unisave_webapi_v2\\dataproviderserviceshared\\userauthentication\\usermanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{84982B83-D6DE-4B0E-A7C6-A8139278121B}|DataProviderServiceShared\\DataProviderServiceShared.csproj|solutionrelative:dataproviderserviceshared\\userauthentication\\usermanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14ACB5C7-248D-4067-87A2-18EEB6C24479}|DTOModelsShared\\DTOModelsShared.csproj|h:\\git_projects\\unisave_webapi_v2\\dtomodelsshared\\dtouserregistration\\dtoregistrationresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14ACB5C7-248D-4067-87A2-18EEB6C24479}|DTOModelsShared\\DTOModelsShared.csproj|solutionrelative:dtomodelsshared\\dtouserregistration\\dtoregistrationresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\models\\userinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\models\\userinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\models\\participentinputmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\models\\participentinputmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\enums\\db_action.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\enums\\db_action.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,31 +82,176 @@
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PostDatamodal.cs",
+              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Models\\PostDatamodal.cs",
+              "RelativeDocumentMoniker": "myunisaveapi\\Models\\PostDatamodal.cs",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Models\\PostDatamodal.cs",
+              "RelativeToolTip": "myunisaveapi\\Models\\PostDatamodal.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T16:18:59.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "inputgetsharingdetail.cs",
+              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Models\\SharinginfoInputModel\\inputgetsharingdetail.cs",
+              "RelativeDocumentMoniker": "myunisaveapi\\Models\\SharinginfoInputModel\\inputgetsharingdetail.cs",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Models\\SharinginfoInputModel\\inputgetsharingdetail.cs",
+              "RelativeToolTip": "myunisaveapi\\Models\\SharinginfoInputModel\\inputgetsharingdetail.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T16:18:52.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "commonitemController.cs",
+              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\commonitemController.cs",
+              "RelativeDocumentMoniker": "myunisaveapi\\Controllers\\commonitemController.cs",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\commonitemController.cs",
+              "RelativeToolTip": "myunisaveapi\\Controllers\\commonitemController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T16:10:25.911Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "sharinginfoController.cs",
+              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\sharinginfoController.cs",
+              "RelativeDocumentMoniker": "myunisaveapi\\Controllers\\sharinginfoController.cs",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\sharinginfoController.cs",
+              "RelativeToolTip": "myunisaveapi\\Controllers\\sharinginfoController.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAYwDsAAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T16:10:15.449Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Sharinginfo.cs",
+              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\DTOModelsShared\\DTOUserRegistration\\Sharinginfo.cs",
+              "RelativeDocumentMoniker": "DTOModelsShared\\DTOUserRegistration\\Sharinginfo.cs",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\DTOModelsShared\\DTOUserRegistration\\Sharinginfo.cs",
+              "RelativeToolTip": "DTOModelsShared\\DTOUserRegistration\\Sharinginfo.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAcwCAAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T16:32:13.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SharingInfoDataFactory.cs",
+              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\DataProviderServiceShared\\SharingInfoDetail\\SharingInfoDataFactory.cs",
+              "RelativeDocumentMoniker": "DataProviderServiceShared\\SharingInfoDetail\\SharingInfoDataFactory.cs",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\DataProviderServiceShared\\SharingInfoDetail\\SharingInfoDataFactory.cs",
+              "RelativeToolTip": "DataProviderServiceShared\\SharingInfoDetail\\SharingInfoDataFactory.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAmwBgAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T16:31:09.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "inputProfileModel.cs",
+              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Models\\inputProfileModel.cs",
+              "RelativeDocumentMoniker": "myunisaveapi\\Models\\inputProfileModel.cs",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Models\\inputProfileModel.cs",
+              "RelativeToolTip": "myunisaveapi\\Models\\inputProfileModel.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAA1wAIAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T11:24:23.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "userinput.cs",
+              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Models\\userinput.cs",
+              "RelativeDocumentMoniker": "myunisaveapi\\Models\\userinput.cs",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Models\\userinput.cs",
+              "RelativeToolTip": "myunisaveapi\\Models\\userinput.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-07T09:21:46.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "giftsharingController.cs",
+              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\giftsharingController.cs",
+              "RelativeDocumentMoniker": "myunisaveapi\\Controllers\\giftsharingController.cs",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\giftsharingController.cs",
+              "RelativeToolTip": "myunisaveapi\\Controllers\\giftsharingController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABIAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T11:06:10.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Program.cs",
               "RelativeDocumentMoniker": "myunisaveapi\\Program.cs",
               "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Program.cs",
               "RelativeToolTip": "myunisaveapi\\Program.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAiwB8AAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-05T14:56:46.21Z"
+              "WhenOpened": "2026-02-05T14:56:46.21Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\appsettings.json",
-              "RelativeDocumentMoniker": "myunisaveapi\\appsettings.json",
-              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\appsettings.json",
-              "RelativeToolTip": "myunisaveapi\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-02-05T14:56:45.025Z"
+              "DocumentIndex": 12,
+              "Title": "DTORegistrationResult.cs",
+              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\DTOModelsShared\\DTOUserRegistration\\DTORegistrationResult.cs",
+              "RelativeDocumentMoniker": "DTOModelsShared\\DTOUserRegistration\\DTORegistrationResult.cs",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\DTOModelsShared\\DTOUserRegistration\\DTORegistrationResult.cs",
+              "RelativeToolTip": "DTOModelsShared\\DTOUserRegistration\\DTORegistrationResult.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAA7wBYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T10:58:12.903Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
+              "Title": "usermanagement.cs",
+              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\DataProviderServiceShared\\UserAuthentication\\usermanagement.cs",
+              "RelativeDocumentMoniker": "DataProviderServiceShared\\UserAuthentication\\usermanagement.cs",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\DataProviderServiceShared\\UserAuthentication\\usermanagement.cs",
+              "RelativeToolTip": "DataProviderServiceShared\\UserAuthentication\\usermanagement.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAUwCQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T11:06:21.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UsermanagementController.cs",
+              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\UsermanagementController.cs",
+              "RelativeDocumentMoniker": "myunisaveapi\\Controllers\\UsermanagementController.cs",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\UsermanagementController.cs",
+              "RelativeToolTip": "myunisaveapi\\Controllers\\UsermanagementController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAuwDUAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-07T09:20:18.921Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "DTOParticiepentsMaster.cs",
               "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\DTOModelsShared\\DTOParticiepents\\DTOParticiepentsMaster.cs",
               "RelativeDocumentMoniker": "DTOModelsShared\\DTOParticiepents\\DTOParticiepentsMaster.cs",
@@ -70,11 +259,12 @@
               "RelativeToolTip": "DTOModelsShared\\DTOParticiepents\\DTOParticiepentsMaster.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-05T14:49:33.849Z"
+              "WhenOpened": "2026-02-05T14:49:33.849Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 15,
               "Title": "Db_Action.cs",
               "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Enums\\Db_Action.cs",
               "RelativeDocumentMoniker": "myunisaveapi\\Enums\\Db_Action.cs",
@@ -86,29 +276,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "giftsharingController.cs",
-              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\giftsharingController.cs",
-              "RelativeDocumentMoniker": "myunisaveapi\\Controllers\\giftsharingController.cs",
-              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\giftsharingController.cs",
-              "RelativeToolTip": "myunisaveapi\\Controllers\\giftsharingController.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowIEAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-05T11:06:10.968Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 14,
               "Title": "ParticipentInputModel.cs",
               "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Models\\ParticipentInputModel.cs",
               "RelativeDocumentMoniker": "myunisaveapi\\Models\\ParticipentInputModel.cs",
               "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Models\\ParticipentInputModel.cs",
               "RelativeToolTip": "myunisaveapi\\Models\\ParticipentInputModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-04T11:35:05.597Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\appsettings.json",
+              "RelativeDocumentMoniker": "myunisaveapi\\appsettings.json",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\appsettings.json",
+              "RelativeToolTip": "myunisaveapi\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-05T14:56:45.025Z"
             }
           ]
         }

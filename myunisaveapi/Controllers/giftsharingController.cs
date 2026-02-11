@@ -2,7 +2,7 @@
 using DataProviderServiceShared.BusinessMaster;
 using DataProviderServiceShared.CategoryMaster;
 using DataProviderServiceShared.ShareAllocationMaster;
-
+using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using myunisaveapi.Enums;
@@ -187,39 +187,74 @@ namespace myunisaveapi.Controllers
         {
             try
             {
-                if (model == null) return BadRequest("Invalid participant data.");
+                if (model == null)
+                    return BadRequest("Invalid participant data.");
+                List<long> participantIds = new();
+
+                if (!string.IsNullOrWhiteSpace(model.p_p_id))
+                {
+                    var raw = model.p_p_id.Trim();
+
+                    if (raw.StartsWith("["))
+                    {
+                        // Case 1: JSON array → "[1,2,3]"
+                        participantIds = JsonSerializer.Deserialize<List<long>>(raw);
+                    }
+                    else if (raw.Contains(","))
+                    {
+                        // Case 2: CSV → "101,102"
+                        participantIds = raw
+                            .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                            .Select(x => Convert.ToInt64(x.Trim()))
+                            .ToList();
+                    }
+                    else
+                    {
+                        // Case 3: Single value → "5"
+                        participantIds.Add(Convert.ToInt64(raw));
+                    }
+                }
+                else
+                {
+                    return BadRequest("Participant is required.");
+                }
 
 
-                string[] pnames = {
-            "p_action", "p_p_id","p_request_id", "p_u_id","ownerid", "p_relation_id", "p_name",
-            "p_dob", "p_allocation", "p_image_name","p_email"
-        };
+                object result = null;
 
-                string[] pvalues = {
-            Db_Action.EXTERNAL_SHARE.ToString(),
-            model.p_p_id?.ToString() ?? "0",
-             model.request_id.ToString(),
-            model.p_u_id.ToString(),
+                foreach (var pid in participantIds)
+                {
+                    string[] pnames = {
+                "p_action", "p_p_id","p_request_id", "p_u_id","ownerid",
+                "p_relation_id", "p_name","p_dob", "p_allocation",
+                "p_image_name","p_email"
+            };
 
-            model.ownerid.ToString(),
-            model.p_relation_id?.ToString() ?? "0",
-            model.p_name ?? "",
-            model.p_dob?.ToString("yyyy-MM-dd") ?? "",
-            model.p_allocation.ToString(),
-            model.p_image_name ?? "",
-            model.p_email??"",
+                    string[] pvalues = {
+                Db_Action.EXTERNAL_SHARE.ToString(),
+                pid.ToString(),                      // ✅ FIXED
+                model.request_id.ToString(),
+                model.p_u_id.ToString(),
+                model.ownerid.ToString(),
+                model.p_relation_id?.ToString() ?? "0",
+                model.p_name ?? "",
+                model.p_dob?.ToString("yyyy-MM-dd") ?? "",
+                model.p_allocation.ToString(),
+                model.p_image_name ?? "",
+                model.p_email ?? ""
+            };
 
-        };
+                    result = _ParticiepentsDataFactory.AddParticiepents(pnames, pvalues);
+                }
 
-                var result = _ParticiepentsDataFactory.AddParticiepents(pnames, pvalues);
                 return Ok(result);
             }
-
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
+
 
         [HttpPost("accept-contribution")]
         public IActionResult acceptcontribution([FromBody] ParticipentInputModel model)
@@ -376,6 +411,12 @@ namespace myunisaveapi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+     
+
+
+
         /* [HttpPost("share-requests")]
         public IActionResult SendShareRequest(long p_owner_id, long p_requester_id, decimal p_requested_percent)
         {

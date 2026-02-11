@@ -4,6 +4,7 @@ using DataProviderServiceShared.CategoryMaster;
 using DataProviderServiceShared.HomeBannerAdd;
 using DataProviderServiceShared.RelationManagement;
 using DataProviderServiceShared.ShareAllocationMaster;
+using DataProviderServiceShared.SharingInfoDetail;
 using DataProviderServiceShared.StoreFinder;
 using DataProviderServiceShared.UserAuthentication;
 using Microsoft.AspNetCore.Builder;
@@ -27,7 +28,7 @@ builder.Services.AddScoped<HomeBannerDataFactory>();
 builder.Services.AddScoped<BrandMasterDataFactory>();
 builder.Services.AddScoped<ParticiepentsDataFactory>();
 builder.Services.AddScoped<RelationshipDataFactory>();
-
+builder.Services.AddScoped<SharingInfoDataFactory>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(c =>

@@ -26,7 +26,12 @@ namespace DataProviderServiceShared.UserAuthentication
         {
             return commop.Addoperation("register_or_login_user_with_provider", pname, pvalue).Tables[0].ToList<DTOuserlogin>();
         }
-        
+
+
+        public List<DTOUserprofile> sp_manage_users_profile(string[] pname, string[] pvalue)
+        {
+            return commop.Addoperation("sp_manage_users_profile", pname, pvalue).Tables[0].ToList<DTOUserprofile>();
+        }
 
 
     }
