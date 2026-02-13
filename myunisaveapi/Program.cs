@@ -14,11 +14,16 @@ using Microsoft.Net.Http.Headers;
 using MySqlDlayerShared;
 using myunisaveapi.Middleware;
 using System.Reflection.PortableExecutable;
+using UtilityShared.CustomeUtility;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new CustomDateConverter());
+});
+
 builder.Services.AddTransient<MySqlSharedHelperAPI>();
 builder.Services.AddScoped<usermanagement>();
 builder.Services.AddScoped<findmystore>();
@@ -29,6 +34,7 @@ builder.Services.AddScoped<BrandMasterDataFactory>();
 builder.Services.AddScoped<ParticiepentsDataFactory>();
 builder.Services.AddScoped<RelationshipDataFactory>();
 builder.Services.AddScoped<SharingInfoDataFactory>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(c =>

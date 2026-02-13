@@ -12,6 +12,7 @@ namespace DTOModelsShared.DTOUserRegistration
         public object total_earning { get; set; }
         public object internal_earning { get; set; }
         public object external_earning { get; set; }
+        public object currency_symbol { get; set; }
     }
 
     public class Sharinginfo_Datewise
@@ -36,4 +37,16 @@ namespace DTOModelsShared.DTOUserRegistration
         public object month_label { get; set; }
 
     }
+
+
+    public class ParticipantEarningPartiecipent
+    {
+        public object participent_id { get; set; }
+        public object participant_name { get; set; }
+        public object image_name { get; set; }
+        public object total_earning { get; set; }
+        public object internal_earning { get; set; }
+        public object external_earning { get; set; }
+    }
+
 }

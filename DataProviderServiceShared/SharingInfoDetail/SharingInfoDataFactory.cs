@@ -26,5 +26,12 @@ namespace DataProviderServiceShared.SharingInfoDetail
         {
             return commop.Addoperation("sp_user_earning_summary_monthwise", pname, pvalue).Tables[0].ToList<Sharinginfo_monthwise>();
         }
+
+        public List<ParticipantEarningPartiecipent> SharingInfoMaster_Particiepent(string[] pname, string[] pvalue)
+        {
+            return commop.Addoperation("sp_user_earning_summary_participantwise", pname, pvalue).Tables[0].ToList<ParticipantEarningPartiecipent>();
+        }
+
+        
     }
 }

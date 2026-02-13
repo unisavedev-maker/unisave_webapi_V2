@@ -58,18 +58,20 @@ namespace myunisaveapi.Controllers
                 var result_summary = _SharingInfoDataFactory.SharingInfoMaster(pnames, pvalues);
                 var result_detail_date = _SharingInfoDataFactory.SharingInfoMaster_datewise(pnames, pvalues);
                 var result_detail_month = _SharingInfoDataFactory.SharingInfoMaster_month(pnames, pvalues);
+                var result_detail_particiepent = _SharingInfoDataFactory.SharingInfoMaster_Particiepent(pnames, pvalues);
                 var response = new
                 {
                     summary = result_summary,
                     datewise = result_detail_date,
-                    monthwise = result_detail_month
+                    monthwise = result_detail_month,
+                    participentwise = result_detail_particiepent
                 };
                 return Ok(response);
             }
 
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest("Invalide response");
             }
         }
 
