@@ -10,6 +10,7 @@ using DataProviderServiceShared.UserAuthentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using MySqlDlayerShared;
 using myunisaveapi.Middleware;
@@ -19,11 +20,11 @@ using UtilityShared.CustomeUtility;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.Converters.Add(new CustomDateConverter());
-});
-
+builder.Services.AddControllersWithViews();
+//.AddJsonOptions(options =>
+//{
+  //  options.JsonSerializerOptions.Converters.Add(new CustomDateConverter());
+//})
 builder.Services.AddTransient<MySqlSharedHelperAPI>();
 builder.Services.AddScoped<usermanagement>();
 builder.Services.AddScoped<findmystore>();
