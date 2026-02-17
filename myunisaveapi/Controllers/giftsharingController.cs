@@ -2,11 +2,13 @@
 using DataProviderServiceShared.BusinessMaster;
 using DataProviderServiceShared.CategoryMaster;
 using DataProviderServiceShared.ShareAllocationMaster;
-using System.Text.Json;
+using DTOModelsShared.DTOParticiepents;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using myunisaveapi.Enums;
 using myunisaveapi.Models;
+using Org.BouncyCastle.Asn1.Pkcs;
+using System.Text.Json;
 
 namespace myunisaveapi.Controllers
 {
@@ -95,6 +97,48 @@ namespace myunisaveapi.Controllers
                 return Ok(result);
             }
             
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpPost("guest_contribution_info")]
+        public IActionResult guest_contribution_info([FromBody] ParticipentInputModel model)
+        {
+            
+            try
+            {
+                if (model == null) return BadRequest("Invalid participant data.");
+
+
+                string[] pnames = {
+            "p_action", "p_p_id","p_request_id", "p_u_id","ownerid", "p_relation_id", "p_name",
+            "p_dob", "p_allocation", "p_image_name","p_email"
+        };
+
+                string[] pvalues = {
+            Db_Action.GUEST_CONTRIBUTION_SUMMARY.ToString(),
+            model.p_p_id?.ToString() ?? "0",
+             model.request_id.ToString(),
+            model.p_u_id.ToString(),
+
+            model.ownerid.ToString(),
+            model.p_relation_id?.ToString() ?? "0",
+            model.p_name ?? "",
+            model.p_dob?.ToString("yyyy-MM-dd") ?? "",
+            model.p_allocation.ToString(),
+            model.p_image_name ?? "",
+            model.p_email??""
+
+        };
+
+                var result = _ParticiepentsDataFactory.AddParticiepents(pnames, pvalues);
+                var owner_wise_particiepent = Groupby_particiepent.GroupByOwner(result);
+                return Ok(owner_wise_particiepent);
+            }
+
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);

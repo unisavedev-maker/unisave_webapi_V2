@@ -34,10 +34,44 @@ namespace DTOModelsShared.DTOParticiepents
         public object share_typeid { get; set; }
         public object share_logo { get; set; }
         public object owner_id { get; set; }
+        public object owner_name { get; set; }
         public object requester_user_id { get; set; }
         public object from_user { get; set; }
         public object owner_user { get; set; }
         public object message { get; set; }
+
+
+    }
+
+    public class OwnerGroupedResponse
+    {
+        public object OwnerId { get; set; }
+        public string OwnerEmail { get; set; }
+        public string OwnerName { get; set; }
+        public List<DTOParticiepentsMaster> Participants { get; set; }
+    }
+
+
+   public class Groupby_particiepent
+    {
+        public static List<OwnerGroupedResponse> GroupByOwner(
+     List<DTOParticiepentsMaster> data)
+        {
+            return data?
+                .Where(x => x.owner_id != null
+                            && int.TryParse(x.owner_id.ToString(), out _))
+                .GroupBy(x => int.Parse(x.owner_id.ToString()))
+                .Select(g => new OwnerGroupedResponse
+                {
+                    OwnerId = g.Key,
+                    OwnerEmail = g.First().owner_user?.ToString() ?? "",
+                    OwnerName = g.First().owner_name?.ToString() ?? "",
+                    Participants = g.ToList()
+                })
+                .ToList()
+                ?? new List<OwnerGroupedResponse>();
+        }
+
 
 
     }

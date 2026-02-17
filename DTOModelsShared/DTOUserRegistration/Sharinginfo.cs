@@ -10,8 +10,11 @@ namespace DTOModelsShared.DTOUserRegistration
     {
         public object user_id { get; set; }
         public object total_earning { get; set; }
+        public object total_earning_val { get; set; }
         public object internal_earning { get; set; }
+        public object internal_earning_val { get; set; }
         public object external_earning { get; set; }
+        public object external_earning_val { get; set; }
         public object currency_symbol { get; set; }
     }
 

@@ -12,7 +12,8 @@
             ACCEPT_EXTERNAL_SHARE,
             REJECT_EXTERNAL_SHARE,
             DELETE_SHARE,
-            DELETE_PARTICIEPENT
+            DELETE_PARTICIEPENT,
+            GUEST_CONTRIBUTION_SUMMARY
 
     }
 }
