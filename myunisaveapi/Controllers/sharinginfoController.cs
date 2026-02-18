@@ -71,7 +71,7 @@ namespace myunisaveapi.Controllers
 
             catch (Exception ex)
             {
-                return BadRequest("Invalide response");
+                return BadRequest(ex);
             }
         }
 

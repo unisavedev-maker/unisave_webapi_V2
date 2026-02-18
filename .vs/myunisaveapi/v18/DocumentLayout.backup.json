@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "H:\\Git_Projects\\unisave_webapi_V2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\enums\\foldertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\enums\\foldertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\controllers\\sharinginfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\controllers\\sharinginfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\controllers\\giftsharingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\controllers\\giftsharingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\controllers\\mediacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\controllers\\mediacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\enums\\foldertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\enums\\foldertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\controllers\\sharinginfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\controllers\\sharinginfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|h:\\git_projects\\unisave_webapi_v2\\myunisaveapi\\controllers\\mediacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40B8540-46DB-448B-B5A3-6F38C393B68B}|myunisaveapi\\myunisaveapi.csproj|solutionrelative:myunisaveapi\\controllers\\mediacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{14ACB5C7-248D-4067-87A2-18EEB6C24479}|DTOModelsShared\\DTOModelsShared.csproj|h:\\git_projects\\unisave_webapi_v2\\dtomodelsshared\\dtoparticiepents\\dtoparticiepentsmaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -90,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -102,25 +102,24 @@
               "RelativeToolTip": "myunisaveapi\\Enums\\Db_Action.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-05T11:10:05.913Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-05T11:10:05.913Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "sharinginfoController.cs",
               "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\sharinginfoController.cs",
               "RelativeDocumentMoniker": "myunisaveapi\\Controllers\\sharinginfoController.cs",
-              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\sharinginfoController.cs",
-              "RelativeToolTip": "myunisaveapi\\Controllers\\sharinginfoController.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAowDkAAABGAAAAAAAAAA==",
+              "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\sharinginfoController.cs*",
+              "RelativeToolTip": "myunisaveapi\\Controllers\\sharinginfoController.cs*",
+              "ViewState": "AgIAADAAAAAAAAAAAAAkwDkAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-11T16:10:15.449Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "FolderType.cs",
               "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Enums\\FolderType.cs",
               "RelativeDocumentMoniker": "myunisaveapi\\Enums\\FolderType.cs",
@@ -141,8 +140,7 @@
               "RelativeToolTip": "DTOModelsShared\\DTOParticiepents\\DTOParticiepentsMaster.cs",
               "ViewState": "AgIAACsAAAAAAAAAAAAswEgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-05T14:49:33.849Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-05T14:49:33.849Z"
             },
             {
               "$type": "Document",
@@ -154,12 +152,11 @@
               "RelativeToolTip": "myunisaveapi\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-17T08:21:49.961Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-17T08:21:49.961Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "mediaController.cs",
               "DocumentMoniker": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\mediaController.cs",
               "RelativeDocumentMoniker": "myunisaveapi\\Controllers\\mediaController.cs",
@@ -167,8 +164,7 @@
               "RelativeToolTip": "myunisaveapi\\Controllers\\mediaController.cs",
               "ViewState": "AgIAAEEAAAAAAAAAAAAowEoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-17T08:22:56.13Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-17T08:22:56.13Z"
             },
             {
               "$type": "Document",
@@ -178,7 +174,7 @@
               "RelativeDocumentMoniker": "myunisaveapi\\Controllers\\giftsharingController.cs",
               "ToolTip": "H:\\Git_Projects\\unisave_webapi_V2\\myunisaveapi\\Controllers\\giftsharingController.cs",
               "RelativeToolTip": "myunisaveapi\\Controllers\\giftsharingController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAGoAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAGoAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-05T11:06:10.968Z",
               "EditorCaption": ""
@@ -193,8 +189,7 @@
               "RelativeToolTip": "DataProviderServiceShared\\MediaServices\\allmediaServiceFactory.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-17T09:04:00.478Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-17T09:04:00.478Z"
             },
             {
               "$type": "Document",
@@ -206,8 +201,7 @@
               "RelativeToolTip": "DTOModelsShared\\DTOImageUploadresult\\DTOOperationResult.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-17T09:27:37.528Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-17T09:27:37.528Z"
             },
             {
               "$type": "Document",
@@ -219,8 +213,7 @@
               "RelativeToolTip": "DataProviderServiceShared\\ParticiepentsMaster\\ParticiepentsDataFactory.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAwAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-17T09:28:41.121Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-17T09:28:41.121Z"
             },
             {
               "$type": "Document",
@@ -232,8 +225,7 @@
               "RelativeToolTip": "myunisaveapi\\Controllers\\homepageController.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-17T08:21:44.14Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-17T08:21:44.14Z"
             },
             {
               "$type": "Document",
@@ -245,8 +237,7 @@
               "RelativeToolTip": "myunisaveapi\\Program.cs",
               "ViewState": "AgIAABoAAAAAAAAAAAAYwCIAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-05T14:56:46.21Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-05T14:56:46.21Z"
             },
             {
               "$type": "Document",
