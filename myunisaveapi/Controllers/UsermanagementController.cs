@@ -19,7 +19,7 @@ namespace myunisaveapi.Controllers
             usrmgmt = userManagementService;
         }
 
-        [HttpGet("GetRegisterUser")]
+       /* [HttpGet("GetRegisterUser")]
         public ActionResult<List<DTORegistrationResult>> GetRegisterUser(string email, string name, string pwd)
         {
             try
@@ -35,6 +35,21 @@ namespace myunisaveapi.Controllers
             }
 
 
+        }*/
+
+        [HttpPost("GetRegisterUser")]
+        public ActionResult<List<DTORegistrationResult>> GetRegisterUser([FromBody] RegisterUserRequest request)
+        {
+            try
+            {
+                string[] pname = { "p_email", "p_name", "p_password" };
+                string[] pvalue = { request.Email, request.Name, request.Pwd };
+                return Ok(usrmgmt.UserRegistrationEmail(pname, pvalue));
+            }
+            catch (Exception)
+            {
+                return BadRequest("Invalid request");
+            }
         }
 
 
