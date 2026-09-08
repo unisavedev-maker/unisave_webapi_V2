@@ -16,3 +16,9 @@
 /MySqlDlayerShared/obj
 /CommonCURDOperation/obj
 /DataProviderServiceShared/obj
+*.user
+.vs/myunisaveapi/DesignTimeBuild/.dtbcache.v2
+.vs/myunisaveapi/FileContentIndex/24daee2b-999f-4c30-a729-df05df9b04c6.vsidx
+.vs/myunisaveapi/FileContentIndex/589fcd82-8092-4171-b89b-3b6e8f7ca773.vsidx
+.vs/myunisaveapi/FileContentIndex/a81f6341-7098-46e5-b318-9f7f1fa8a657.vsidx
+.vs/myunisaveapi/DesignTimeBuild/.dtbcache.v2
